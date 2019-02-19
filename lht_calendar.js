@@ -5,8 +5,8 @@
    Tutorial 10
    Tutorial Case
 
-   Author: 
-   Date:  
+   Author: Melinda Chirila
+   Date:  9/19/2019
 
    Filename:   lht_calendar.js  
 
