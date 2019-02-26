@@ -79,3 +79,38 @@ function createCalendar(calDate) {
       return calendarHTML;
 
 }
+
+//function to write a table row of weekday abbreviations 
+function calWeekdayRow() {
+      //array of weekday abbreveations
+      var dayName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      var rowHTML = "<tr>";
+
+      //look through the dayName array
+      for (var i = 0; i < dayName.length; i++) {
+            rowHTML += "<th class='calendar_weekdays'>" + dayName[i] + "</th>";
+      }
+      rowHTML += "</tr>";
+      return rowHTML;
+}
+
+// funtion to calculate the number of days in a month
+
+function daysInMonth(calDate) {
+      //array of days in each month
+      var dayCount = [31, 28, 21, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+      //extract the four didget year and month value
+      var thisYear = calDate.getFullYear();
+      var thisMonth = calDate.getMonth();
+
+      //revise thedays in February fir the leap year
+      if (thisYear % 4 === 0) {
+            if ((thisYear % 100 != 0) || (thisYear % 400 === 0)) {
+                  dayCount[1] = 29;
+            }
+      }
+
+      //return the number of days for the current month
+      return dayCount[thisMonth];
+}
