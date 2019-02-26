@@ -74,43 +74,117 @@ function calCaption(calDate) {
 function createCalendar(calDate) {
 
       var calendarHTML = "<table id='calendar_table'>";
+
       calendarHTML += calCaption(calDate);
+
       calendarHTML += "</table>";
+
       return calendarHTML;
 
 }
 
 //function to write a table row of weekday abbreviations 
+
 function calWeekdayRow() {
       //array of weekday abbreveations
+
       var dayName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
       var rowHTML = "<tr>";
 
       //look through the dayName array
+
       for (var i = 0; i < dayName.length; i++) {
+
             rowHTML += "<th class='calendar_weekdays'>" + dayName[i] + "</th>";
       }
       rowHTML += "</tr>";
+
       return rowHTML;
 }
 
 // funtion to calculate the number of days in a month
 
 function daysInMonth(calDate) {
+
       //array of days in each month
+
       var dayCount = [31, 28, 21, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
       //extract the four didget year and month value
+
       var thisYear = calDate.getFullYear();
+
       var thisMonth = calDate.getMonth();
 
       //revise thedays in February fir the leap year
+
       if (thisYear % 4 === 0) {
+
             if ((thisYear % 100 != 0) || (thisYear % 400 === 0)) {
+
                   dayCount[1] = 29;
             }
       }
 
       //return the number of days for the current month
+
       return dayCount[thisMonth];
+
+
+      //function to write the table rows for each day of the month
+
+      function calDays(calDays) {
+
+            //determine the starting days of the month
+
+            var day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+
+            var weekday = day.getDay();
+
+            //write cells for each day of the month
+
+            var htmlCode = "<tr>";
+
+            for (var i = 0; i < weekday; i++) {
+
+                  htmlCode += "<td></td>";
+            }
+
+            //write cells for each day of the month
+
+            var totalDays = daysInMonth(calDate);
+
+            for (var i = 1; i <= totalDays; i++) {
+
+                  day.setDate(i);
+
+                  weekday = day.getDay();
+
+            }
+            var highlightday = calDate.getDay();
+
+
+            for (var i = 1; i <= totalDays; i++) {
+
+                  day.setDate(i);
+
+                  weekDay = day.getDay();
+
+
+                  if (weekDay === 0) {
+
+                        htmlCode += "<tr>";
+                  }
+
+                  if (weekDay === 0) {
+
+                        htmlCode += "<td class='caldendar_dates' id='calendar_today'>" + i + "</td>";
+
+                  } else {
+
+                        htmlCode += "<td"
+                  }
+            }
+      }
 }
